@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.*;
 public class Carro {
 	@Id
 	@GeneratedValue
+	@XmlElement
 	int id;
 	@XmlElement
 	String modelo;
 	@XmlElement
 	String placa;
-	@XmlElement
 	String cidade;
 	@Temporal(TemporalType.DATE)
 	Calendar disponivel_em;
