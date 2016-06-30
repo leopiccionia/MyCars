@@ -1,4 +1,6 @@
 package br.usp.mytrips.mycars;
+import java.util.Calendar;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 
@@ -16,4 +18,6 @@ public class Carro {
 	String placa;
 	@XmlElement
 	String cidade;
+	@Temporal(TemporalType.DATE)
+	Calendar disponivel_em;
 }
