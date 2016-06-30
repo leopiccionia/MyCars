@@ -1,6 +1,6 @@
 package br.usp.mytrips.mycars;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -12,19 +12,6 @@ import javax.persistence.criteria.*;
 @Stateless
 @WebService(portName="MyCarsPort", serviceName="MyCarsService", targetNamespace="http://localhost/MyCars/wsdl", endpointInterface="MyCarsWS")
 public class MyCars implements MyCarsWS{
-	
-	@WebMethod
-	Carro getCarro(){
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("carros");
-		EntityManager manager= factory.createEntityManager();
-		manager.getTransaction().begin();
-		Carro carro = new Carro();
-		manager.persist(carro);
-		manager.getTransaction().commit();
-		manager.close();
-		factory.close();
-		return carro;
-	}
 
 	@WebMethod
 	public List<Carro> local(String cidade) {
@@ -41,6 +28,20 @@ public class MyCars implements MyCarsWS{
 		manager.close();
 		factory.close();
 		return lista;
+	}
+
+	@WebMethod
+	public void reservar(int id, Calendar data) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("carros");
+		EntityManager manager= factory.createEntityManager();
+		manager.getTransaction().begin();
+		Carro carro = new Carro();
+		carro.id = id;
+		carro.disponivel_em = data;
+		manager.persist(carro);
+		manager.getTransaction().commit();
+		manager.close();
+		factory.close();
 	}
 	
 }

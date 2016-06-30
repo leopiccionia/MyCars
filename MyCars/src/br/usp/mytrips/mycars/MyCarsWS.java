@@ -1,5 +1,6 @@
 package br.usp.mytrips.mycars;
 
+import java.util.Calendar;
 import java.util.List;
 import javax.jws.*;
 
@@ -7,4 +8,7 @@ import javax.jws.*;
 public interface MyCarsWS {
 		@WebMethod
 		public List<Carro> local(String cidade);
+		
+		@WebMethod
+		public void reservar(int id, Calendar data);
 }
